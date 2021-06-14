@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/partials/header :: header">
+    <title>Dice Result</title>
+</head>
+<body>
+
+<div>
+    <p>Dice Number: <span th:text="${diceNumber}"></span></p>
+    <p>Your Number: <span th:text="${number}"></span></p>
+</div>
+
+<th:block th:if="${number == diceNumber}">
+    <p>The dice number was <span th:text="${diceNumber}"></span>. Your number was <span th:text="${number}"></span>.</p>
+</th:block>
+
+<th:block th:if="${number != diceNumber}">
+    <p>The dice number was <span th:text="${diceNumber}"></span>. Your number was <span th:text="${number}"></span>.</p>
+</th:block>
+</body>
+</html>
