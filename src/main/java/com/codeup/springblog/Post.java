@@ -1,9 +1,13 @@
 package com.codeup.springblog;
 
+import com.codeup.springblog.User;
+import com.codeup.springblog.PostImage;
+import org.hibernate.engine.internal.Cascade;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Post")
+@Table(name = "Posts")
 public class Post {
 
     @Id
@@ -16,7 +20,11 @@ public class Post {
     @Column(length = 255, nullable = false)
     private String body;
 
-    private User user;
+    @OneToOne
+    private com.codeup.springblog.User user;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostImage> images;
 
     public Post() {}
 
@@ -30,6 +38,20 @@ public class Post {
         this.title = title;
         this.body = body;
     }
+
+    public Post(String title, String body, User user, List<PostImage> images) {
+        this.title = title;
+        this.body = body;
+        this.user = user;
+        this.images = images;
+    }
+        public Post(long id, String title, String body, User user, List<PostImage> images) {
+            this.id = id;
+            this.title = title;
+            this.body = body;
+            this.user = user;
+            this.images = images;
+        }
 
     public long getId() {
         return id;
@@ -58,5 +80,12 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<PostImage> getImages() {
+        return images;
+    }
+    public void setImages(List<PostImage> images) {
+        this.images = images;
     }
 }
