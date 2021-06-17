@@ -1,8 +1,8 @@
 package com.codeup.springblog;
 
-import com.codeup.springblog.User;
-import com.codeup.springblog.PostImage;
-import org.hibernate.engine.internal.Cascade;
+import com.codeup.springblog.models.PostImage;
+import com.codeup.springblog.models.User;
+
 import java.util.List;
 import javax.persistence.*;
 
@@ -21,7 +21,7 @@ public class Post {
     private String body;
 
     @OneToOne
-    private com.codeup.springblog.User user;
+    private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<PostImage> images;
